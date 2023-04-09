@@ -4,9 +4,7 @@ from datetime import timedelta
 from dotenv import load_dotenv
 from pathlib import Path
 
-
 load_dotenv()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -17,7 +15,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')#django-insecure-nwj$$roj88%%5qfyy+6my_tm5-0b_53uepc=%3%05_3#v*o$!h'
+SECRET_KEY = os.environ.get('SECRET_KEY')  # django-insecure-nwj$$roj88%%5qfyy+6my_tm5-0b_53uepc=%3%05_3#v*o$!h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -52,6 +50,7 @@ LOCAL_APPS = [
     'users',
     'posts',
     'videos',
+    'files'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -146,13 +145,13 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",

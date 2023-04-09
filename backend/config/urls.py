@@ -6,11 +6,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from posts.views import PostViewSet
 from videos.views import VideoViewSet
+from files.views import FileViewSet
 
 schema_view = get_swagger_view(title='Uikola API')
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='posts')
 router.register(r'videos', VideoViewSet, basename='videos')
+router.register(r'files', FileViewSet, basename='files')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
